@@ -1,9 +1,22 @@
 // src/lib/api.ts
-import { Book } from '../app/types';
+import { MongoClient } from "mongodb";
 
-export async function fetchBooks({ limit = 50 }: { limit?: number }) {
-  const res = await fetch('/api/books');
-  if (!res.ok) throw new Error('Failed to fetch books');
-  const data: Book[] = await res.json();
-  return { books: data.slice(0, limit) };
+const uri = process.env.MONGODB_URI!; // من Environment Variable على Vercel
+
+let cachedClient: MongoClient | null = null;
+
+export async function fetchBooks({ limit = 50 } = {}) {
+  try {
+    if (!cachedClient) {
+      cachedClient = new MongoClient(uri);
+      await cachedClient.connect();
+    }
+    const db = cachedClient.db("bookstoreDB");
+    const collection = db.collection("books");
+    const books = await collection.find({}).limit(limit).toArray();
+    return { books };
+  } catch (err) {
+    console.error("MongoDB fetchBooks error:", err);
+    throw err;
+  }
 }

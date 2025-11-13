@@ -907,7 +907,7 @@
       "publisher": "Al-Sufi Atmospheric Sciences",
       "rating": 4,
       "reviewCount": 12,
-      "inStock": false,
+      "inStock": true,
       "featured": false
     },
     {
@@ -1063,7 +1063,7 @@
       "publisher": "Al-Farabi Cognitive Institute",
       "rating": 4.3,
       "reviewCount": 21,
-      "inStock": false,
+      "inStock": true,
       "featured": false
     },
     {
@@ -1176,7 +1176,7 @@
       "author": "Dr. Layla Al-Masri",
       "description": "A beginner-friendly guide to astrophysics covering stars, galaxies, cosmology, and observational techniques.",
       "price": 99.99,
-      "image": "https://example.com/astro_intro.jpg",
+      "image": "https://m.media-amazon.com/images/I/71xP1mQG3tL._AC_UF894,1000_QL80_.jpg",
       "isbn": "978-4678901234",
       "genre": [
         "Astronomy",

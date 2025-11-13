@@ -291,14 +291,12 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
             
             {/* Pagination */}
             <Pagination
-  currentPage={currentPage}
-  totalPages={totalPages}
-  onPageChange={handlePageChange}
-  itemsPerPage={itemsPerPage}
-  totalItems={filteredAndSortedBooks.length}
-  onItemsPerPageChange={handleItemsPerPageChange}
-/>
-
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              itemsPerPage={itemsPerPage}
+              totalItems={filteredAndSortedBooks.length}
+            />
           </>
         ) : (
           <p className="text-center text-gray-500 text-lg">No books found matching your criteria.</p>

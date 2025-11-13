@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  srcDir: 'src',
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'm.media-amazon.com', port: '', pathname: '/**' },
@@ -15,6 +14,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'chemistry.com.pk', port: '', pathname: '/**' },
       { protocol: 'https', hostname: 'media.wiley.com', port: '', pathname: '/**' }, 
       { protocol: 'https', hostname: 'images-cdn.ubuy.co.in', port: '', pathname: '/**' },
+      { protocol: 'https', hostname: 'example.com', port: '', pathname: '/**' },
     ],
   },
 };

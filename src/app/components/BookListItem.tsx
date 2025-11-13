@@ -86,18 +86,22 @@ const BookListItem: React.FC<BookListItemProps> = ({ book, onAddToCart }) => {
       <div className="flex items-center p-4 gap-4">
       {/* Book Cover/Icon - Left Side */}
 <Link href={`/book/${book.id}`} className="flex-shrink-0 cursor-pointer">
-  <div className="w-16 h-20 bg-gray-200 rounded-md flex items-center justify-center hover:bg-gray-300 transition-colors duration-200 relative">
-    {book.image ? (
+<div className="w-16 h-20 bg-gray-200 rounded-md flex items-center justify-center hover:bg-gray-300 transition-colors duration-200 relative">
+  {book.image ? (
+    <>
+      {console.log(`Book "${book.title}" image URL:`, book.image)}
       <Image
         src={book.image}
         alt={book.title}
         fill
         className="object-contain rounded-md"
       />
-    ) : (
-      <div className="text-2xl text-gray-400">📚</div>
-    )}
-  </div>
+    </>
+  ) : (
+    <div className="text-2xl text-gray-400">📚</div>
+  )}
+</div>
+
 </Link>
 
 

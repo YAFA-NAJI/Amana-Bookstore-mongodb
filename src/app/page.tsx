@@ -1,38 +1,50 @@
-// src/app/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import BookGrid from './components/BookGrid';
-import { fetchBooks } from '../lib/api';
-import { Book } from './types';
+import { Book } from './types'; // النوع الأصلي
 
 export default function HomePage() {
   const [books, setBooks] = useState<Book[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function loadBooks() {
-      try {
-        setIsLoading(true);
-        const data = await fetchBooks({ limit: 50 });
-        setBooks(data.books);
-        setError(null);
-      } catch (err) {
-        console.error('Error loading books:', err);
-        setError('Failed to load books. Please try again.');
-      } finally {
-        setIsLoading(false);
-      }
+ useEffect(() => {
+  async function loadBooks() {
+    try {
+      setIsLoading(true);
+      const res = await fetch('/api/books');
+      const dataRaw = await res.json();
+      const data: Book[] = dataRaw.map((b: any) => ({
+        id: b.id || b._id?.toString(),
+        title: b.title,
+        author: b.author,
+        price: b.price || 0,
+        image: b.image || '/placeholder.png',
+        description: b.description || '',
+        isbn: b.isbn || '',
+        genre: b.genre || '',
+        tags: b.tags || [],
+        publisher: b.publisher || '',
+        year: b.year || 0,
+        rating: b.rating || 0,
+        reviewCount: b.reviews?.length || 0,
+        reviews: b.reviews || [],
+      }));
+      console.log('Loaded books:', data); // <--- هذا يتحقق من البيانات
+      setBooks(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
+  }
+  loadBooks();
+}, []);
 
-    loadBooks();
-  }, []);
 
-  // Simple cart handler for demo purposes
   const handleAddToCart = (bookId: string) => {
     console.log(`Added book ${bookId} to cart`);
-    // Here you would typically dispatch to a cart state or call an API
   };
 
   if (isLoading) {
@@ -52,8 +64,8 @@ export default function HomePage() {
         <div className="text-center bg-red-100 p-8 rounded-lg">
           <h2 className="text-2xl font-bold text-red-800 mb-2">Error</h2>
           <p className="text-red-600">{error}</p>
-          <button 
-            onClick={() => window.location.reload()} 
+          <button
+            onClick={() => window.location.reload()}
             className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
           >
             Try Again
@@ -73,7 +85,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Book Grid */}
+      {/* Featured Books Grid */}
       <BookGrid books={books} onAddToCart={handleAddToCart} />
     </div>
   );

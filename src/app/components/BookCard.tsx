@@ -4,6 +4,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Book } from '../types';
+import Image from "next/image";
+
 
 interface BookCardProps {
   book: Book;
@@ -82,19 +84,30 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
-      {/* Book Cover - Clickable */}
-      <Link href={`/book/${book.id}`} className="block cursor-pointer">
-        <div className="relative h-64 w-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors duration-200">
-          {/* Book Icon Placeholder */}
-          <div className="text-6xl text-gray-400">📚</div>
-        </div>
-      </Link>
+   <div className="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+{/* Book Cover - Clickable */}
+<Link href={`/book/${book.id}`} className="block cursor-pointer">
+  <div className="inline-block w-[280px] h-[420px] bg-gray-200 hover:bg-gray-300">
+    <Image
+      src={book.image || "/fallback-book.png"}
+      alt={book.title}
+      width={280}
+      height={420}
+      className="w-full h-full object-cover"
+    />
+  </div>
+</Link>
+
+
+
+
       
       {/* Book Information */}
-      <div className="p-4">
-        <Link href={`/book/${book.id}`} className="block cursor-pointer">
-          <h3 className="text-lg font-semibold text-gray-800 truncate hover:text-blue-600 transition-colors duration-200">{book.title}</h3>
+       <div className="p-4">
+    <Link href={`/book/${book.id}`} className="block cursor-pointer">
+           <h3 className="text-lg font-semibold text-gray-800 truncate hover:text-blue-600 transition-colors duration-200">
+        {book.title}
+      </h3>
           <p className="text-sm text-gray-600 mt-1">by {book.author}</p>
         </Link>
         

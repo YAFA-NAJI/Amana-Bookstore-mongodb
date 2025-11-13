@@ -4,6 +4,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Book } from '../types';
+import Image from 'next/image';
+
 
 interface BookListItemProps {
   book: Book;
@@ -80,14 +82,24 @@ const BookListItem: React.FC<BookListItemProps> = ({ book, onAddToCart }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200">
+    <div className="rounded-lg shadow-sm border border-blue-100 hover:border-blue-200 transition-shadow duration-200 bg-gradient-to-r from-white to-blue-50/30">
       <div className="flex items-center p-4 gap-4">
-        {/* Book Cover/Icon - Left Side */}
-        <Link href={`/book/${book.id}`} className="flex-shrink-0 cursor-pointer">
-          <div className="w-16 h-20 bg-gray-200 rounded-md flex items-center justify-center hover:bg-gray-300 transition-colors duration-200">
-            <div className="text-2xl text-gray-400">📚</div>
-          </div>
-        </Link>
+      {/* Book Cover/Icon - Left Side */}
+<Link href={`/book/${book.id}`} className="flex-shrink-0 cursor-pointer">
+  <div className="w-16 h-20 bg-gray-200 rounded-md flex items-center justify-center hover:bg-gray-300 transition-colors duration-200 relative">
+    {book.image ? (
+      <Image
+        src={book.image}
+        alt={book.title}
+        fill
+        className="object-contain rounded-md"
+      />
+    ) : (
+      <div className="text-2xl text-gray-400">📚</div>
+    )}
+  </div>
+</Link>
+
 
         {/* Book Information - Right Side */}
         <div className="flex-1 min-w-0">
@@ -114,7 +126,7 @@ const BookListItem: React.FC<BookListItemProps> = ({ book, onAddToCart }) => {
                 {book.genre.slice(0, 3).map((genre) => (
                   <span 
                     key={genre} 
-                    className="inline-block bg-gray-100 rounded-full px-2 py-1 text-xs font-medium text-gray-700"
+                    className="inline-block bg-blue-50 rounded-full px-2 py-1 text-xs font-medium text-blue-700"
                   >
                     {genre}
                   </span>
@@ -137,7 +149,7 @@ const BookListItem: React.FC<BookListItemProps> = ({ book, onAddToCart }) => {
             {/* Price and Actions */}
             <div className="flex flex-col items-end gap-3">
               <div className="text-right">
-                <p className="text-xl font-bold text-gray-900">${book.price.toFixed(2)}</p>
+                <p className="text-xl font-bold text-blue-800">${book.price.toFixed(2)}</p>
                 {book.featured && (
                   <span className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full mt-1">
                     Featured

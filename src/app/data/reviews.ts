@@ -631,5 +631,17 @@ export const reviews: Review[] = [
     comment: 'Great integration of geophysics with climate science. The plate tectonics chapters are well-written and current.',
     timestamp: '2024-03-08T11:40:00Z',
     verified: true
-  }
+  },
+  // Reviews for Introduction to Astrophysics (book-46)
+{
+  id: 'review-61',
+  bookId: '3',
+  author: 'Dr. Layla Al-Masri',
+  rating: 5,
+  title: 'Great introduction to astrophysics',
+  comment: 'This book makes complex astrophysics topics easy to understand. Perfect for beginners!',
+  timestamp: '2025-09-29T15:00:00Z',
+  verified: true
+}
+
 ];

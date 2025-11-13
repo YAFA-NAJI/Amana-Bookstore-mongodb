@@ -9,19 +9,34 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.0"
+    "mongodb": "^7.0.0",
+    "next": "^16.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
-    "@eslint/eslintrc": "^3"
-  }
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "description": "Modern bookstore demo built with Next.js App Router, React, and Tailwind CSS. It showcases a catalog with filtering, featured carousel, book details with reviews, a simple cart (localStorage), and API route examples.",
+  "main": "convertToJSON.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amana-Bootcamp/Amana-Bookstore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Amana-Bootcamp/Amana-Bookstore/issues"
+  },
+  "homepage": "https://github.com/Amana-Bootcamp/Amana-Bookstore#readme"
 }
